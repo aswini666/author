@@ -24,11 +24,16 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
+    @authors = params[:book][:auth]
     @book = Book.new(book_params)
-
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        @authors.each do |author|
+          if author.present?
+            AuthorBook.create(author_id: author.to_i, book_id: @book.id)
+          end
+        end
+        format.html { redirect_to root_path, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -42,7 +47,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -69,6 +74,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:book_title)
+      params.require(:book).permit(:book_title, :auth)
     end
 end
