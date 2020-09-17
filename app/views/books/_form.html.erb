@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="p-5">
+    <div class="card">
+      <div class="card-body">
+        <%= form_with model: @book do |form| %>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Title</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Book name">
+        </div> 
+         
+          <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+            Add Book
+          </button> 
+        <% end %>      
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+
