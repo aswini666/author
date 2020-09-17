@@ -56,7 +56,7 @@ class AuthorsController < ApplicationController
   def destroy
     @author.destroy
     respond_to do |format|
-      format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Author was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
