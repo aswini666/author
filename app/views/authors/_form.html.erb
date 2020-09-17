@@ -2,33 +2,35 @@
   <div class="p-5">
     <div class="card">
       <div class="card-body">
-       <%= form_with(model: author, local: true) do |form| %>
-         <% if author.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
-
-              <ul>
-                <% author.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+        <%= form_with(model: author, local: true) do |form| %>
+        <% if author.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
+          <ul>
+            <% author.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
         <div class="form-group">
           <label for="author_first_name">First Name</label>
-          <input type="text" class="form-control" name="author[first_name]" id="author_first_name" placeholder="first name">
-        </div> 
-         <div class="form-group">
+          <%= form.text_field :first_name, class: "form-control", placeholder: "Name" %>
+        </div>
+        <div class="form-group">
           <label for="author_last_name">Last Name</label>
-          <input type="text" class="form-control"  name="author[last_name]" id="author_last_name" placeholder="last name">
-        </div> 
-         <div class="form-group">
-            <label for="exampleFormControlInput1">Date of Birth</label>
-            <input type="text" class="form-control" name="author[date_of_birth]" id="author_date_of_birth" placeholder="Birth Date">
-        </div> 
-          <input type="submit" class="btn btn-primary" name="commit" value="Create Author" data-disable-with="Create Author"> 
-        <% end %>      
+          <%= form.text_field :last_name, class: "form-control", placeholder: "last name" %>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Date of Birth</label>
+          <%= form.text_field :date_of_birth, class: "form-control", placeholder: "Birth Date" %>
+        </div>
+        <input type="submit" class="btn btn-primary" name="commit" value="Create Author" data-disable-with="Create Author">
+        <% end %>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
